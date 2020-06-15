@@ -3,8 +3,12 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'models/dog_model.dart';
-import 'dog_list.dart';
+import 'pages/card_review_page.dart';
+
+// Size Config on Init
+import 'size_config.dart';
+
+import 'models/card_model.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,11 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kanji Card',
-      theme: ThemeData( 
-        //primaryColor: Colors.white,
-        brightness: Brightness.dark
-      ),
-      home: MyHomePage(title: 'Kanji RTK Card'),
+      theme: ThemeData(
+          // primaryColor: Colors.white,
+          brightness: Brightness.dark),
+      home: MyHomePage(title: 'Home'),
     );
   }
 }
@@ -27,18 +30,25 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  @override 
+  @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-    List<Dog> initialDoge = []
-  ..add(Dog('Ruby','Portland, OR, USA',
-  'Ruby is a goodgirl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'))
-  ..add(Dog('Rex', 'Seattl, WA, USA', 'Best in Show 1999'))
-  ..add(Dog('Herbert', 'Dallas, TX, USA', 'A very good boye.'));
+  //   List<Dog> initialDoge = []
+  // ..add(Dog('Ruby','Portland, OR, USA',
+  // 'Ruby is a goodgirl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'))
+  // ..add(Dog('Rex', 'Seattl, WA, USA', 'Best in Show 1999'))
+  // ..add(Dog('Herbert', 'Dallas, TX, USA', 'A very good boye.'));
+
+  List<KanCard> kanCard = []
+    ..add(KanCard('1', 'rice field', 'look like a rice field from above'))
+    ..add(KanCard('2', 'day', 'look like a new day outside the windows'))
+    ..add(KanCard('3', 'moon',
+        'looking like the sun goes down longer into the night and the moon rises'));
 
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -51,16 +61,118 @@ class _MyHomePageState extends State<MyHomePage> {
             end: Alignment.bottomLeft,
             stops: [0.1, 0.5, 0.7, 0.9],
             colors: [
-              Colors.indigo[800],
-              Colors.indigo[700],
-              Colors.indigo[600],
-              Colors.indigo[400],
+              Colors.white70,
+              Colors.white60,
+              Colors.white54,
+              Colors.white30,
             ],
           ),
         ),
-        child: Center(child: DogList(initialDoge),),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.blockSizeVertical * 5)),
+              studyCard,
+              Padding(
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.blockSizeVertical * 5)),
+              manageVocab,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget get studyCard {
+    return Center(
+      child: Card(
+        child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: showCardReviewPage(),
+          // onTap: () {
+          //   print('Card tapped.');
+          // },
+          
+          child: Container(
+            padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 10),
+            width: SizeConfig.blockSizeHorizontal * 80,
+            height: SizeConfig.blockSizeVertical * 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(
+                  Icons.school,
+                  color: Colors.amber,
+                  size: 42,
+                ),
+                Text(
+                  'Review',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                    fontSize: SizeConfig.blockSizeHorizontal * 10,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget get manageVocab {
+    return Center(
+      child: Card(
+        child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: () {
+            print('Card tapped.');
+          },
+          child: Container(
+            padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 10),
+            width: SizeConfig.blockSizeHorizontal * 80,
+            height: SizeConfig.blockSizeVertical * 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Icon(
+                  Icons.favorite,
+                  color: Colors.amber,
+                  size: 42,
+                ),
+                Text(
+                  'Manage',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontFamily: 'Roboto',
+                    letterSpacing: 0.5,
+                    fontSize: SizeConfig.blockSizeHorizontal * 10,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  
+  // Create page Review
+  showCardReviewPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return CardReviewPage();
+        },
       ),
     );
   }
 }
-
