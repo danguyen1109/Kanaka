@@ -87,13 +87,16 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
   Widget get studyCard {
     return Center(
       child: Card(
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
-          onTap: showCardReviewPage(),
+          onTap: () {
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CardReviewPage()
+            ));
+          },
           // onTap: () {
           //   print('Card tapped.');
           // },
@@ -127,7 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
   Widget get manageVocab {
     return Center(
       child: Card(
@@ -165,14 +167,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   
-  // Create page Review
-  showCardReviewPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return CardReviewPage();
-        },
-      ),
-    );
-  }
 }
