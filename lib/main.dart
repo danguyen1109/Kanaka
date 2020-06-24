@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'pages/card_review_page.dart';
+import 'constant.dart';
 
 // Size Config on Init
 import 'size_config.dart';
@@ -18,8 +19,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kanji Card',
       theme: ThemeData(
-          // primaryColor: Colors.white,
-          brightness: Brightness.dark),
+          scaffoldBackgroundColor: kBackgroundColor,
+          fontFamily: "Poppins",
+          textTheme: TextTheme(
+            body1: TextStyle(color: kBodyTextColor),
+          )),
       home: MyHomePage(title: 'Home'),
     );
   }
@@ -35,11 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //   List<Dog> initialDoge = []
-  // ..add(Dog('Ruby','Portland, OR, USA',
-  // 'Ruby is a goodgirl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'))
-  // ..add(Dog('Rex', 'Seattl, WA, USA', 'Best in Show 1999'))
-  // ..add(Dog('Herbert', 'Dallas, TX, USA', 'A very good boye.'));
 
   List<KanCard> kanCard = []
     ..add(KanCard('1', 'rice field', 'look like a rice field from above'))

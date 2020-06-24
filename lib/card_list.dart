@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'dog_card.dart';
 import 'models/card_model.dart';
 import 'flash_card.dart';
 
