@@ -10,8 +10,17 @@ class CardReviewPage extends StatefulWidget {
   }
 }
 
-class _CardReviewPageState extends State<CardReviewPage> {
-  var char = getKanjiUnicode('了');
+class _CardReviewPageState extends State<CardReviewPage>
+    with SingleTickerProviderStateMixin {
+  var run = true;
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
+  }
 
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -68,7 +77,7 @@ class _CardReviewPageState extends State<CardReviewPage> {
                     EdgeInsets.only(top: SizeConfig.blockSizeVertical * 22),
               ),
               Text(
-                'completo',
+                'complete',
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontFamily: 'Roboto',
@@ -84,6 +93,8 @@ class _CardReviewPageState extends State<CardReviewPage> {
   }
 
   Widget get backCard {
+    var char = getKanjiUnicode('別');
+
     return Center(
       child: Card(
         child: Container(
@@ -93,11 +104,26 @@ class _CardReviewPageState extends State<CardReviewPage> {
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 22),
-                child: KanjiViewer.svg("assets/vectors/" + char + ".svg",
-                scaleToViewport: true,
-                duration: new Duration(seconds: 6)),
+                height: SizeConfig.blockSizeHorizontal * 20,
+                width: SizeConfig.blockSizeHorizontal * 20,
+                // padding:
+                //     EdgeInsets.only(top: SizeConfig.blockSizeVertical * 15),
+                // child: KanjiViewer.svg("assets/kanji/" + char + ".svg",
+                //     scaleToViewport: true, duration: new Duration(seconds: 6)),
+                child: KanjiViewer.svg(
+                  "lib/assets/kanji/" + char + ".svg",
+                  scaleToViewport: true,
+                  duration: new Duration(seconds: 6),
+                  controller: _controller,
+                  run: run,
+                ),
               ),
+              RaisedButton(
+                  child: Text('Redraw'),
+                  onPressed: () {
+                    _controller.reset();
+                    _controller.forward();
+                  })
             ],
           ),
         ),

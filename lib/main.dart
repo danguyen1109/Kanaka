@@ -96,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Navigator.push(context,
             MaterialPageRoute(builder: (context) => CardReviewPage()
             ));
+            print('ok');
           },
           // onTap: () {
           //   print('Card tapped.');
