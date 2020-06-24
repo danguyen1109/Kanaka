@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:kan_card/size_config.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:flutter_kanji_view/flutter_kanji_view.dart';
 
-class CardReviewPage extends StatelessWidget {
+class CardReviewPage extends StatefulWidget {
+  @override
+  _CardReviewPageState createState() {
+    return _CardReviewPageState();
+  }
+}
+
+class _CardReviewPageState extends State<CardReviewPage> {
+  var char = getKanjiUnicode('了');
+
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
@@ -27,8 +37,8 @@ class CardReviewPage extends StatelessWidget {
         child: Center(
           child: Column(children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical*10)
-            ),
+                padding:
+                    EdgeInsets.only(top: SizeConfig.blockSizeVertical * 10)),
             FlipCard(
               front: frontCard,
               back: backCard,
@@ -58,7 +68,7 @@ class CardReviewPage extends StatelessWidget {
                     EdgeInsets.only(top: SizeConfig.blockSizeVertical * 22),
               ),
               Text(
-                'what',
+                'completo',
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontFamily: 'Roboto',
@@ -73,7 +83,7 @@ class CardReviewPage extends StatelessWidget {
     );
   }
 
-    Widget get backCard {
+  Widget get backCard {
     return Center(
       child: Card(
         child: Container(
@@ -81,19 +91,12 @@ class CardReviewPage extends StatelessWidget {
           width: SizeConfig.blockSizeHorizontal * 75,
           height: SizeConfig.blockSizeVertical * 66,
           child: Column(
-            children: [
-              Padding(
-                padding:
-                    EdgeInsets.only(top: SizeConfig.blockSizeVertical * 22),
-              ),
-              Text(
-                'なに',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontFamily: 'Roboto',
-                  letterSpacing: 1,
-                  fontSize: SizeConfig.blockSizeHorizontal * 8,
-                ),
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical * 22),
+                child: KanjiViewer.svg("assets/vectors/" + char + ".svg",
+                scaleToViewport: true,
+                duration: new Duration(seconds: 6)),
               ),
             ],
           ),
