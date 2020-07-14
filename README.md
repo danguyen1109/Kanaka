@@ -1,6 +1,8 @@
-# kanaka
+# Kanaka
 
-A new Flutter project using SM-2 to help study flash cards with ease
+A new Flutter project to help study flash cards with ease.
+Based on SRS SM-2 for helping memorize words better.
+Inspired from AnkiDroid, but algorithm is tweaked to fit my usage.
 
 ## Getting Started
 
