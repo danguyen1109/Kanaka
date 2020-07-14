@@ -1,6 +1,6 @@
-# kan_card
+# kanaka
 
-A new Flutter project.
+A new Flutter project using SM-2 to help study flash cards with ease
 
 ## Getting Started
 
