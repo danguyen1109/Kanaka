@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'dog_card.dart';
 import 'models/dog_model.dart';
 
@@ -7,7 +6,7 @@ class DogList extends StatelessWidget {
   final List<Dog> doggos;
   DogList(this.doggos);
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return _buildList(context);
   }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'dog_card.dart';
 import 'models/card_model.dart';
 import 'flash_card.dart';
-
 
 class CardList extends StatelessWidget {
   // final List<Dog> doggos;
@@ -12,7 +10,7 @@ class CardList extends StatelessWidget {
   final List<KanCard> cards;
   CardList(this.cards);
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return _buildList(context);
   }
